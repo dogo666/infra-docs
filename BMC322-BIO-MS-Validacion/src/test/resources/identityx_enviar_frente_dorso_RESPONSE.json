@@ -1,0 +1,15 @@
+{
+    "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzamJJdDMRGltdcWabJ9eP0w/idchecks/2OxoQyTXLBw6CmPxy2pFzA/documents/GatcUxmGRke2h0g9YZaAgw",
+    "id": "GatcUxmGRke2h0g9YZaAgw",
+    "created": "2021-07-23T14:22:54.505+00:00",
+    "captureFormat": "ID_CARD",
+    "captured": "2020-01-30T07:53:23.435+00:00",
+    "clientCapture": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzamJJdDMRGltdcWabJ9eP0w/idchecks/2OxoQyTXLBw6CmPxy2pFzA/documents/GatcUxmGRke2h0g9YZaAgw/clientCapture"
+    },
+    "serverProcessed": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzamJJdDMRGltdcWabJ9eP0w/idchecks/2OxoQyTXLBw6CmPxy2pFzA/documents/GatcUxmGRke2h0g9YZaAgw/serverProcessed"
+    },
+    "resubmissionCount": 0,
+    "allowedSensitiveDataPermissions": "Get,Create,Update,Delete,Block,Unblock"
+}

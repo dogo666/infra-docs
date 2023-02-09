@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: rpgo-test # Label for the Deployment
+  name: goapp # Name of Deployment
+spec:
+  selector:
+    matchLabels:
+      run: rpgo-test
+  template: # Pod template
+    metadata:
+      labels:
+        run: rpgo-test # Labels Pods from this Deployment
+    spec: # Pod specification; each Pod created by this Deployment has this specification
+      containers:
+      - image: hooliairata/rpgo # Application to run in Deployment's Pods
+        name: hostname # Container name
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8081
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+              path: /ping
+              port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+              path: /ping
+              port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20              

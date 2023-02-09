@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS application (
+	id INT AUTO_INCREMENT,
+	application_id VARCHAR(100) NOT NULL,
+	path_regex VARCHAR(50),
+	PRIMARY KEY(id)
+)ENGINE=INNODB;

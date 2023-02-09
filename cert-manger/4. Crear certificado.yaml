@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: certificate-test
+  namespace: cert-manager
+spec:
+  isCA: true
+  duration: 43800h # 5 years
+  commonName: certificate-test
+  secretName: certificate-test-key-pair
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+    group: cert-manager.io

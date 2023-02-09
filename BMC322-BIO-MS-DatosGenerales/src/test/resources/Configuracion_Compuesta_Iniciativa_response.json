@@ -1,0 +1,20 @@
+{
+   
+        "parametros": [
+            {
+                "microservicio": "macro-enrolamiento",
+                "nombre": "url-hash",
+                "valor": "{ \"landing-page\" : { \"base-url\" : {\"dev1\":\"https://dev-bmc322.globant.com/tramiteonline/contacto/\",\"stg1\":\"https://stg-bmc322.globant.com/tramiteonline/contacto/\",\"test1\":\"https://tdmob-test.macro.com.ar/tramiteonline/contacto/\",\"pre-prd1\":\"https://prep.macro.com.ar/tramiteonline/contacto/\",\"pre-prd2\":\"https://prep.macro.com.ar/tramiteonline/contacto/\",\"prd1\":\"https://www.macro.com.ar/tramiteonline/contacto/\",\"prd2\":\"https://www.macro.com.ar/tramiteonline/contacto/\"}}}"
+            },
+            {
+                "microservicio": "macro-enrolamiento",
+                "nombre": "toc",
+                "valor": "{ \"toc\" : { \"mode\" : 1, \"liveness\" : { \"intentos-permitidos\": 6, \"horas-bloqueo\" : 48 }}}"
+            },
+            {
+                "microservicio": "macro-validacion",
+                "nombre": "toc",
+                "valor": "{ \"toc\" : { \"mode\" : 1, \"liveness\" : { \"intentos-permitidos\": 6, \"horas-bloqueo\" : 48 }}}"
+            }
+        ]
+}

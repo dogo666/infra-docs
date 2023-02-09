@@ -1,0 +1,37 @@
+#!groovy
+
+pipeline {
+    agent { label 'java11' }
+    stages {
+        stage('Setup Flyway Conf') {
+            steps {
+                withCredentials([string(credentialsId: 'AWS-BIO-RDS-DEV-GLOBANT', variable: 'PASS_DEV_GLOBANT')]) {
+                    /** URL de Database ambiente dev **/
+                    sh 'sed -i "1d" flyway-local.conf'
+                    sh '''sed -i '1i\fflyway.url=jdbc:mysql://database-1.cmnuvugxe03s.us-east-1.rds.amazonaws.com/db_macro_biometrics' flyway-local.conf'''
+
+                    sh 'sed -i "2d" flyway-local.conf'
+                    sh '''sed -i '2i\fflyway.user=admin' flyway-local.conf'''
+                    /* Se debe crear previamente el secret text AWS-BIO-RDS-DEV-GLOBANT en Jenkins con la clave de la BD*/
+                    sh 'sed -i "3d" flyway-local.conf'
+                    sh 'sed -i 3i\fflyway.password=$PASS_DEV_GLOBANT flyway-local.conf'
+
+                    sh 'sed -i "4d" flyway-local.conf'
+                    sh '''sed -i '$a flyway.encoding=UTF-8' flyway-local.conf'''
+
+                    sh 'cat flyway-local.conf'
+                }
+            }
+        }
+        stage('Run Migrations against DB') {
+            steps {
+                script {
+                    sh 'echo Run Migrations on Dev'
+                    sh 'mvn -Dflyway.configFiles=flyway-local.conf flyway:migrate'
+                    sh 'echo Retrieve migrations executed on DB'
+                    sh 'mvn -Dflyway.configFiles=flyway-local.conf flyway:info'
+                }
+            }
+        }
+    }
+}

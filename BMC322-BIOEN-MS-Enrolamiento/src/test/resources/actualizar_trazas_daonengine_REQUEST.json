@@ -1,0 +1,78 @@
+{
+  "idusuario": "0125863948F",
+  "trazas": {
+    "sucursal": "0000",
+    "ip": "10.24.90.128",
+    "idenrolador": "analissalomon@MACRO.COM.AR",
+    "idsupervisor": "",
+    "documentovigente": "1",
+    "scorerenaper": "86",
+    "indrostrorenaper": "1",
+    "numerotramite": "123456789",
+    "dnivalido": "1",
+    "rostrovalido": "1",
+    "tipoenrolamiento": "0",
+    "huellas": [
+      {
+        "identificador": "1",
+        "scorerenaper": "0",
+        "indhuellahitrenaper": "0",
+        "indhuellaexcepcion": "0"
+      },
+      {
+        "identificador": "6",
+        "scorerenaper": "0",
+        "indhuellahitrenaper": "0",
+        "indhuellaexcepcion": "0"
+      },
+      {
+        "identificador": "2",
+        "scorerenaper": "0",
+        "indhuellahitrenaper": "0",
+        "indhuellaexcepcion": "0"
+      },
+      {
+        "identificador": "7",
+        "scorerenaper": "0",
+        "indhuellahitrenaper": "0",
+        "indhuellaexcepcion": "0"
+      },
+      {
+        "identificador": "3",
+        "scorerenaper": "0",
+        "indhuellahitrenaper": "0",
+        "indhuellaexcepcion": "1"
+      },
+      {
+        "identificador": "8",
+        "scorerenaper": "0",
+        "indhuellahitrenaper": "0",
+        "indhuellaexcepcion": "1"
+      },
+      {
+        "identificador": "4",
+        "scorerenaper": "0",
+        "indhuellahitrenaper": "0",
+        "indhuellaexcepcion": "1"
+      },
+      {
+        "identificador": "9",
+        "scorerenaper": "0",
+        "indhuellahitrenaper": "0",
+        "indhuellaexcepcion": "1"
+      },
+      {
+        "identificador": "5",
+        "scorerenaper": "0",
+        "indhuellahitrenaper": "0",
+        "indhuellaexcepcion": "1"
+      },
+      {
+        "identificador": "10",
+        "scorerenaper": "0",
+        "indhuellahitrenaper": "0",
+        "indhuellaexcepcion": "1"
+      }
+    ]
+  }
+}

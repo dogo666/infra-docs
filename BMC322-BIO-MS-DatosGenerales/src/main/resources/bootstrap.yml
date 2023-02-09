@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    kubernetes:
+      secrets:
+        name: datosgenerales-secret
+        paths: /etc/secrets
+        sources:
+          - name: datosgenerales-secret
+    config:
+      enabled: ${SPRING_CLOUD_CONFIG_ENABLED:true}
+      uri: ${config-server.uri}
+      name: datosgenerales

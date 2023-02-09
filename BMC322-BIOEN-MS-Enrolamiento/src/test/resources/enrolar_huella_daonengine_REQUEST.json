@@ -1,0 +1,21 @@
+{
+  "idusuario": "1044619600",
+  "tipodocumento": "01",
+  "numerodocumento": "12345678",
+  "genero": "M",
+  "trazas": "{\"sucursal\":\"123\",\"ip\":\"123.322.212.123\",\"idenrolador\":\"1234567890\",\"idsupervisor\":\"1234567890\",\"documentovigente\":\"1\",\"canal\":\"ABC\",\"scorerenaper\":\"80\",\"indrostrorenaper\":\"1\",\"indhuelladaon\":\"1\",\"huellas\":[{\"identificador\":\"1\",\"scorerenaper\":\"3453\",\"indhuellahitrenaper\":\"1\",\"indhuellaexcepcion\":\"0\"},{\"identificador\":\"1\",\"scorerenaper\":\"3453\",\"indhuellahitrenaper\":\"1\",\"indhuellaexcepcion\":\"0\"},{\"identificador\":\"1\",\"scorerenaper\":\"3453\",\"indhuellahitrenaper\":\"1\",\"indhuellaexcepcion\":\"0\"}]}",
+  "huellas": [
+    {
+      "identificador": 1,
+      "imagen": "dsfsdfsdfsdfsdfsdf"
+    },
+    {
+      "identificador": 2,
+      "imagen": "dsfsdfsdfsdfsdfsdf"
+    },
+    {
+      "identificador": 3,
+      "imagen": "dsfsdfsdfsdfsdfsdf"
+    }
+  ]
+}

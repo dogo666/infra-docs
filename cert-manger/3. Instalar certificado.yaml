@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: testcert
+spec:
+  secretName: testcert  
+  dnsNames:
+  - dominio
+  issuerRef:
+    name: letsencryp-staging
+    kind: ClusterIssuer

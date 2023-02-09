@@ -1,0 +1,81 @@
+#!groovy
+pipeline {
+    agent { label 'lab-be-1' }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+    }
+    environment {
+        ECRBIO = "https://vpce-03e767f82a539b553-dbgaxnk4.api.ecr.us-east-1.vpce.amazonaws.com"
+        ECR_REGISTRY = "049551109034.dkr.ecr.us-east-1.amazonaws.com"                       // URL ECR SIN HTTPS
+        ECR_AWS = "https://049551109034.dkr.ecr.us-east-1.amazonaws.com"
+        AWS_EKS = "71E3402BF1758228885CDFF8E81DDB1C.gr7.us-east-1.eks.amazonaws.com"
+        SERVICE_CREDS = credentials('JEN-ECR-Biometria-DEV')
+    }
+    stages {
+        stage ('Clean Workspace') {
+            steps {
+                sh "rm -f -- cloud/dev/datosgenerales/application.properties"
+                sh "rm -f -- cloud/dev/enrolamiento/application.properties"
+                sh "rm -f -- cloud/dev/validacion/application.properties"
+                sh "rm -f -- cloud/dev/enrolamiento-apigateway/application.properties"
+                sh "rm -f -- cloud/dev/validacion-apigateway/application.properties"
+		        sh "rm -f -- cloud/dev/etl-migracion-huellas/application.properties"
+            }
+        }
+        stage ('Build Properties') {
+            steps {
+                sh "cat cloud/dev/datosgenerales/*.properties > cloud/dev/datosgenerales/application.properties"
+                sh "cat cloud/dev/enrolamiento/*.properties > cloud/dev/enrolamiento/application.properties"
+                sh "cat cloud/dev/validacion/*.properties > cloud/dev/validacion/application.properties"
+                sh "cat cloud/dev/enrolamiento-apigateway/*.properties > cloud/dev/enrolamiento-apigateway/application.properties"
+                sh "cat cloud/dev/validacion-apigateway/*.properties > cloud/dev/validacion-apigateway/application.properties"
+		        sh "cat cloud/dev/etl-migracion-huellas/*.properties > cloud/dev/etl-migracion-huellas/application.properties"
+
+                echo "Generate ConfigMap"
+                sh "/home/deployuser/kustomize build ./cloud/dev > ./configmap-dev.yml"
+                stash includes: '**', name: 'deployment'
+            }
+        }
+        stage ('Deploy properties') {
+            agent { label 'srvtdto1ap-test' }
+            options { skipDefaultCheckout true }
+            steps {
+		        unstash 'deployment'
+		        sh '''
+                export AWS_ACCESS_KEY_ID=$SERVICE_CREDS_USR
+                export AWS_SECRET_ACCESS_KEY=$SERVICE_CREDS_PSW
+                kubectl apply -f configmap-dev.yml -n biometria-ns
+                kubectl apply -f ./jenkins/dev -n biometria-ns
+                unset AWS_ACCESS_KEY_ID
+                unset AWS_SECRET_ACCESS_KEY
+		        '''
+            }
+        }
+        stage('Reinicio de servicios') {
+            agent { label 'srvtdto1ap-test' }
+            when {
+                expression { return params.REINICIA_SERVICIOS == 'Y' }
+            }
+            steps {
+                echo "----------    Se reinician los pods ${params.SERVICIOS}"
+                sh '''
+                    export AWS_ACCESS_KEY_ID=$SERVICE_CREDS_USR
+                    export AWS_SECRET_ACCESS_KEY=$SERVICE_CREDS_PSW
+
+                    kubectl get deployments -n biometria-ns
+
+                    for serv in $(echo ''' +params.SERVICIOS+ ''' | tr "," "\n")
+                    do
+                        kubectl rollout restart deployment ${serv} -n biometria-ns
+                        kubectl rollout status deployment ${serv} -n biometria-ns
+                    done
+
+                    kubectl get pods -n biometria-ns
+
+                    unset AWS_ACCESS_KEY_ID
+                    unset AWS_SECRET_ACCESS_KEY
+                '''
+            }
+        }
+    }
+}

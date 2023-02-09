@@ -1,0 +1,28 @@
+{
+	"enroladores": [
+		{
+			"idusuario": "admin@admin.com",
+			"tipodocumento": "01",
+			"numerodocumento": "152489964",
+			"genero": "M",
+			"sucursal": "1",
+			"idcobis": "asdfasdf136543",
+			"estado": null,
+			"cantidaddehuellas": null,
+			"razon": null,
+			"supervisor": null
+		},
+		{
+			"idusuario": "aldo@macro.com.ar",
+			"tipodocumento": "01",
+			"numerodocumento": "17999725",
+			"genero": "M",
+			"sucursal": "1",
+			"idcobis": null,
+			"estado": null,
+			"cantidaddehuellas": null,
+			"razon": null,
+			"supervisor": null
+		}
+	]
+}

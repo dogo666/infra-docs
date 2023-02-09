@@ -1,0 +1,10 @@
+{
+
+  "parametros": [
+    {
+      "microservicio": "macro-enrolamiento",
+      "nombre": "configuracion-huellas-renaper",
+      "valor": "{\n  \"manoderecha\" : {\n    \"pulgar\" : 1,\n    \"indice\" : 2,\n    \"mayor\" : 3,\n    \"anular\" : 4,\n    \"menique\" : 5\n  },\n  \"manoizquierda\" : {\n    \"pulgar\" : 6,\n    \"indice\" : 7,\n    \"mayor\" : 8,\n    \"anular\" : 9,\n    \"menique\" : 10\n  }\n}"
+    }
+  ]
+}

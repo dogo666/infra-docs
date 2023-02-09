@@ -1,0 +1,22 @@
+{
+  "idusuario": "1044619600",
+  "tipodocumento": "01",
+  "numerodocumento": "12345678",
+  "genero": "M",
+  "nombre": "Nombre",
+  "bloqueado": "1",
+  "huellas": [
+    {
+      "identificador": 1,
+      "imagen": "dsfsdfsdfsdfsdfsdf"
+    },
+    {
+      "identificador": 2,
+      "imagen": "dsfsdfsdfsdfsdfsdf"
+    },
+    {
+      "identificador": 3,
+      "imagen": "dsfsdfsdfsdfsdfsdf"
+    }
+  ]
+}

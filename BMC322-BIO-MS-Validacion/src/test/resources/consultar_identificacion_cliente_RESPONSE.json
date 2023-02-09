@@ -1,0 +1,32 @@
+{
+    "elements": [
+        {
+            "Apellido": "LUNA",
+            "RazonSocialNombre": "EDUARDO GERMAN",
+            "CodigoSexo": "M",
+            "Sexo": "MASCULINO",
+            "CodigoTributario": "08",
+            "DescripcionTributario": "C.U.I.L.",
+            "NumeroTributario": "20302309494",
+            "CodigoFuncionarioAsignado": "0",
+            "ApellidoNombreFuncionario": "No existe funcionario",
+            "CodigoIdentificacion": "01",
+            "DescripcionIdentificacion": "D.N.I.",
+            "NumeroIdentificacion": "30230949",
+            "NumeroTelefono": "43026932",
+            "DDI": "0054",
+            "DDN": "011",
+            "MailCliente": "eduardoluna@macro.com.ar",
+            "CodigoBanca": "01",
+            "Banca": "INDIVIDUOS",
+            "CodigoSegmento": "01",
+            "Segmento": "PLAN SUELDO",
+            "CodigoSubsegmento": "09",
+            "Subsegmento": "EMPLEADO DE MACRO",
+            "CodigoCategoria": "02",
+            "Categoria": "NO CATEGORIZADO",
+            "IdCobis": "6536265",
+            "FuncionarioAsignado": ""
+        }
+    ]
+}

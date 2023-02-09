@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    kubernetes:
+      secrets:
+        name: validacion-secret
+        paths: /etc/secrets
+        sources:
+          - name: validacion-secret
+    config:
+      enabled: ${SPRING_CLOUD_CONFIG_ENABLED:true}
+      uri: ${config-server.uri}
+      name: validacion
+

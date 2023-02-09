@@ -1,0 +1,91 @@
+# Archivo para propósito de pruebas a nivel local, antes de integrarse con el proyecto concreto.
+# nombre del servicio, no cambiar
+spring:
+  application:
+    name: ${macro.spring.serviceid}
+  main:
+    allow-bean-definition-overriding: true
+    
+renaper: 
+  certificado: ${renaper.certificado.ruta}
+
+server:
+  port: ${macro.spring.port}
+  ssl:
+    enabled: true
+    key-store: ${macro.home.security.cert.path}
+    key-store-password: ${macro.home.security.cert.password}
+    keyStoreType: PKCS12
+    #keyAlias: localhost
+    clientAuth: want
+
+jasypt:
+  encryptor:
+    password: ${JASYPT_ENCRYPTOR_PASSWORD}
+
+eureka:
+  instance:
+    secureVirtualHostName: ${spring.application.name}
+    securePort: ${server.port}
+    hostname: ${macro.eureka.instance.hostname}
+    instanceId: ${spring.application.name}:${server.port}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+    preferIpAddress: false
+    nonSecurePortEnabled: false
+    securePortEnabled:  true
+    leaseRenewalIntervalInSeconds: 30
+    lease-expiration-duration-in-seconds: 30
+    statusPageUrl: https://${eureka.instance.hostname}:${server.port}${management.endpoints.web.base-path}/info
+    homePageUrl: https://${eureka.instance.hostname}:${server.port}/swagger-ui.html
+
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 30
+    healthcheck:
+      enabled: false
+    serviceUrl:
+      defaultZone: https://${macro.instance.discovery.host}:${macro.instance.discovery.port}/eureka/
+
+# habilitacion de ribbon para el balanceo, no cambiar
+ribbon:
+  eureka:
+    enabled: true
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 100000
+        readTimeout: 100000
+
+# Actuator
+management:
+  endpoint:
+    health:
+      show-details: "ALWAYS"
+  endpoints:
+    web:
+      base-path: /${macro.spring.serviceid}/manager
+      exposure:
+        include: "*"
+      cors:
+        allowed-origins: true
+
+
+info:
+  app:
+    microservicio: ${macro.microservicio.nombre}
+    version: "@project.version@"
+    artefacto: ${macro.microservicio.artefacto}
+    group: "@project.groupId@"
+    lastBuildDate: "@timestamp@"
+    jenkins-build: "@jenkins.build.number@"
+  java:
+    version: "@java.version@"
+  config:
+    env: ${api.macro.entorno.valor}
+    serviceid: ${macro.spring.serviceid}
+    port: ${macro.spring.port}
+    eureka-host: ${macro.eureka.instance.hostname}
+    discovery-server: ${macro.instance.discovery.host}:${macro.instance.discovery.port}
+    key-store: ${macro.home.security.cert.path}

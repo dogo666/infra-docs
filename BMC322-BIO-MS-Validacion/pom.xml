@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ar.com.macro.biometria.validacion</groupId>
+	<artifactId>macro-validacion</artifactId>
+	<version>1.0.10</version>
+	<packaging>jar</packaging>
+
+	<name>macro-validacion</name>
+	
+	<description>Microservicio Biometria de Validacion</description>
+	<url>https://bmc322.dev.globant.com:8330/swagger-ui.html#/</url>
+
+	<organization>
+		<name>Globant</name>
+		<url>www.globant.com</url>
+	</organization>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.4.6</version>
+		<relativePath />
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>11</java.version>
+		<jacoco.version>0.8.5</jacoco.version>
+		<spring-cloud.version>2020.0.3</spring-cloud.version>
+		<spring.doc.open.api.ui.version>1.5.10</spring.doc.open.api.ui.version>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+		<nexus.url>http://172.28.198.4:8081</nexus.url>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+    		<groupId>org.springframework.cloud</groupId>
+    		<artifactId>spring-cloud-starter-bootstrap</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${spring.doc.open.api.ui.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+		</dependency>
+
+		<!-- tag::token -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.70</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		
+		<dependency>
+  			<groupId>com.identityx</groupId>
+  			<artifactId>IdentityXClientSDK</artifactId>
+  			<version>5.1.0.7</version>
+
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.mhshams</groupId>
+			<artifactId>jnbis</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+
+
+		<dependency>
+    		<groupId>com.squareup.okhttp3</groupId>
+    		<artifactId>logging-interceptor</artifactId>
+		</dependency>
+
+		<!-- Dependencias para pruebas -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+    		<groupId>org.junit.vintage</groupId>
+    		<artifactId>junit-vintage-engine</artifactId>
+    		<scope>test</scope>
+    		<exclusions>
+        		<exclusion>
+            	<groupId>org.hamcrest</groupId>
+            	<artifactId>hamcrest-core</artifactId>
+        		</exclusion>
+    		</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-inline</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Commons -->
+		<dependency>
+			<groupId>ar.com.macro.commons.encryption</groupId>
+			<artifactId>macro-commons-encryption</artifactId>
+			<version>1.8.2-RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>ar.com.macro.commons.values</groupId>
+			<artifactId>macro-commons-values</artifactId>
+			<version>1.19.2-RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>ar.com.macro.commons.exceptions</groupId>
+			<artifactId>macro-commons-exceptions</artifactId>
+			<version>2.7.3-RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>io.springfox</groupId>
+					<artifactId>springfox-swagger2</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.springfox</groupId>
+					<artifactId>springfox-swagger-ui</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>ar.com.macro.commons.utils</groupId>
+			<artifactId>macro-commons-utils</artifactId>
+			<version>1.11.1-RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>io.springfox</groupId>
+					<artifactId>springfox-swagger2</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.springfox</groupId>
+					<artifactId>springfox-swagger-ui</artifactId>
+				</exclusion>
+			</exclusions>			
+		</dependency>
+		<dependency>
+			<groupId>ar.com.macro.commons.components</groupId>
+			<artifactId>macro-commons-components</artifactId>
+			<version>1.6.5-RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>ar.com.macro.commons.trace</groupId>
+			<artifactId>macro-commons-trace</artifactId>
+			<version>3.2.0-RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>ar.com.macro.commons.esb</groupId>
+			<artifactId>macro-commons-esb</artifactId>
+			<version>3.7.2-RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>io.springfox</groupId>
+					<artifactId>springfox-swagger2</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.springfox</groupId>
+					<artifactId>springfox-swagger-ui</artifactId>
+				</exclusion>
+			</exclusions>			
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.4.2.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>ar.com.macro.biometria.commons</groupId>
+			<artifactId>macro-biometria-commons</artifactId>
+			<version>0.0.15-RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>31.1-jre</version>
+		</dependency>
+
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+<!--			<plugin>-->
+<!--				<groupId>pl.project13.maven</groupId>-->
+<!--				<artifactId>git-commit-id-plugin</artifactId>-->
+<!--				<version>2.2.4</version>-->
+<!--			</plugin>-->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<configuration>
+					<append>true</append>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>11</source>
+					<target>11</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>1.4.2.Final</version>
+						</path>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.18.20</version>
+						</path>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-mapstruct-binding</artifactId>
+							<version>0.2.0</version>
+						</path>
+					</annotationProcessorPaths>
+					<compilerArgs>
+						<compilerArg>
+							-Amapstruct.defaultComponentModel=spring
+						</compilerArg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<distributionManagement>
+
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>${nexus.url}/repository/maven-snapshots/</url>
+		</snapshotRepository>
+
+		<repository>
+			<id>nexus-releases</id>
+			<url>${nexus.url}/repository/maven-releases/</url>
+		</repository>
+
+	</distributionManagement>
+
+	<profiles>
+
+		<profile>
+			<id>eureka</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.cloud</groupId>
+					<artifactId>spring-cloud-starter-config</artifactId>
+				</dependency>
+
+				<dependency>
+					<groupId>org.springframework.cloud</groupId>
+					<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>kubernetes</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.cloud</groupId>
+					<artifactId>spring-cloud-starter-kubernetes-all</artifactId>
+					<version>1.1.9.RELEASE</version>
+				</dependency>
+
+				<dependency>
+					<groupId>org.springframework.cloud</groupId>
+					<artifactId>spring-cloud-starter-kubernetes-loadbalancer</artifactId>
+					<version>1.1.9.RELEASE</version>
+				</dependency>
+
+				<dependency>
+					<groupId>org.springframework.cloud</groupId>
+					<artifactId>spring-cloud-starter-kubernetes-config</artifactId>
+					<version>1.0.2.RELEASE</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+	</profiles>
+
+</project>

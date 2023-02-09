@@ -1,0 +1,1 @@
+# BMC322-BIO-ConfigurationProperties

@@ -1,0 +1,12 @@
+{
+  "enroladores": [
+    {
+      "email": "admin@admin.com",
+      "tipodocumento": "01",
+      "numerodocumento": "152489964",
+      "genero": "M",
+      "sucursal": "01",
+      "idcobis": "asdfasdf136543"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  #- k8s/ingress.yaml
+  #- k8s/mongodb-configmap.yaml
+
+commonLabels:
+  project: biometria
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: macro-bio-enrolamiento
+    files:
+    - enrolamiento/application.properties
+
+  - name: macro-bio-datosgenerales
+    files:
+    - datosgenerales/application.properties
+
+  - name: macro-bio-validacion
+    files:
+    - validacion/application.properties
+      
+  - name: macro-bio-enrolamiento-apigateway
+    files:
+    - enrolamiento-apigateway/application.properties
+
+  - name: macro-bio-validacion-apigateway
+    files:
+    - validacion-apigateway/application.properties
+
+  - name: macro-etl-migracion-huellas
+    files:
+    - etl-migracion-huellas/application.properties

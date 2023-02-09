@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    kubernetes:
+      secrets:
+        name: enrolamiento-secret
+        paths: /etc/secrets
+        sources:
+          - name: enrolamiento-secret
+    config:
+      enabled: ${SPRING_CLOUD_CONFIG_ENABLED:true}
+      uri: ${config-server.uri}
+      name: enrolamiento
+

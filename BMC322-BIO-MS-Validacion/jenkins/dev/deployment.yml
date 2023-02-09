@@ -1,0 +1,112 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  macro-validacion-configmap-version: 'macro-bio-validacion'
+  macro-microservicio-nombre: 'macro-validacion'
+  macro-spring-serviceid: 'macro-validacion'
+  spring-profiles-active: 'kubernetes,application,database,esb,externalServices,internalServices,messages,security,templatesPdf,swagger'
+  jasypt-encryptor-password: 'l4p4ssd3m4cr0'
+metadata:
+  name: macro-validacion-basic
+  namespace: biometria-ns
+  labels:
+    app: validacion
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: validacion
+  namespace: biometria-ns
+  labels:
+    app: validacion
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: validacion
+  template:
+    metadata:
+      labels:
+        app: validacion
+    spec:
+      serviceAccountName: biometria-be-service-account
+      automountServiceAccountToken: true
+      containers:
+        - name: validacion
+          image: 049551109034.dkr.ecr.us-east-1.amazonaws.com/bio-dev/validacion:latest
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: tlskey
+            mountPath: /etc/keystore/
+            readOnly: true
+          - name: service-secrets
+            mountPath: "/etc/secrets"
+            readOnly: true
+          - name: tlsdaonkey
+            mountPath: /etc/daon/keystore/
+            readOnly: true
+          ports:
+            - containerPort: 8330
+          resources:
+            limits:
+              cpu: 500m
+              memory: 0.7Gi
+            requests:
+              cpu: 300m
+              memory: 0.5Gi
+          livenessProbe:
+            httpGet:
+              path: /macro-bio-validacion/manager/health/liveness
+              scheme: HTTPS
+              port: 8330
+            failureThreshold: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /macro-bio-validacion/manager/health/readiness
+              scheme: HTTPS
+              port: 8330
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  name: macro-validacion-basic
+                  key: spring-profiles-active
+            - name: MACRO_SPRING_SERVICEID
+              valueFrom:
+                configMapKeyRef:
+                  name: macro-validacion-basic
+                  key: macro-spring-serviceid
+            - name: MACRO_MICROSERVICIO_NOMBRE
+              valueFrom:
+                configMapKeyRef:
+                  name: macro-validacion-basic
+                  key: macro-microservicio-nombre
+            - name: CONFIGMAP_VERSION
+              valueFrom:
+                configMapKeyRef:
+                  name: macro-validacion-basic
+                  key: macro-validacion-configmap-version
+            - name: JASYPT_ENCRYPTOR_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: macro-validacion-basic
+                  key: jasypt-encryptor-password
+            - name: API_DOCS_ENABLED
+              value: "true"
+            - name: SWAGGER_UI_ENABLED
+              value: "true"
+      volumes:
+        - name: service-secrets
+          secret:
+            secretName: validacion-secret
+        - name: tlskey
+          secret:
+            secretName: keystore
+        - name: tlsdaonkey
+          secret:
+            secretName: daon-keystore

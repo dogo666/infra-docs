@@ -1,0 +1,21 @@
+{
+    
+        "parametros": [
+            {
+                "microservicio": "macro-enrolamiento",
+                "nombre": "mesesvigencia",
+                "valor": "6"
+            },
+            {
+                "microservicio": "macro-enrolamiento",
+                "nombre": "dias-entrega-domicilio",
+                "valor": "3"
+            },
+            {
+                "microservicio": "macro-enrolamiento",
+                "nombre": "dias-entrega-sucursal",
+                "valor": "1"
+            }
+        ]
+  
+}

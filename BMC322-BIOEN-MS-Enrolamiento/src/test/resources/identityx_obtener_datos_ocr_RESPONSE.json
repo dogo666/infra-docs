@@ -1,0 +1,255 @@
+{
+    "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzamJJdDMRGltdcWabJ9eP0w/idchecks/2OxoQyTXLBw6CmPxy2pFzA/documents/GatcUxmGRke2h0g9YZaAgw/serverProcessed/ocrData/sensitiveData",
+    "mrz": {
+        "11": {
+            "fieldId": "11",
+            "name": "Nationality",
+            "value": "Argentina",
+            "source": "WHITE_LIGHT"
+        },
+        "12": {
+            "fieldId": "12",
+            "name": "Sex",
+            "value": "M",
+            "source": "WHITE_LIGHT"
+        },
+        "35": {
+            "fieldId": "35",
+            "name": "MRZ Type",
+            "value": "ID-1",
+            "source": "WHITE_LIGHT"
+        },
+        "25": {
+            "fieldId": "25",
+            "name": "Surname And Given Names",
+            "value": "CHUANG PO MIN",
+            "source": "WHITE_LIGHT"
+        },
+        "26": {
+            "fieldId": "26",
+            "name": "Nationality Code",
+            "value": "ARG",
+            "source": "WHITE_LIGHT"
+        },
+        "38": {
+            "fieldId": "38",
+            "name": "Issuing State Name",
+            "value": "Argentina",
+            "source": "WHITE_LIGHT"
+        },
+        "185": {
+            "fieldId": "185",
+            "name": "Age",
+            "value": "40",
+            "source": "WHITE_LIGHT"
+        },
+        "0": {
+            "fieldId": "0",
+            "name": "Document Class Code",
+            "value": "ID",
+            "source": "WHITE_LIGHT"
+        },
+        "1": {
+            "fieldId": "1",
+            "name": "Issuing State Code",
+            "value": "ARG",
+            "source": "WHITE_LIGHT"
+        },
+        "364": {
+            "fieldId": "364",
+            "name": "Remainder Term",
+            "value": "85",
+            "source": "WHITE_LIGHT"
+        },
+        "2": {
+            "fieldId": "2",
+            "name": "Document Number",
+            "value": "19016612",
+            "source": "WHITE_LIGHT"
+        },
+        "3": {
+            "fieldId": "3",
+            "name": "Date Of Expiry",
+            "value": "2028-09-06",
+            "source": "WHITE_LIGHT"
+        },
+        "5": {
+            "fieldId": "5",
+            "name": "Date Of Birth",
+            "value": "1981-06-25",
+            "source": "WHITE_LIGHT"
+        },
+        "8": {
+            "fieldId": "8",
+            "name": "Surname",
+            "value": "CHUANG",
+            "source": "WHITE_LIGHT"
+        },
+        "80": {
+            "fieldId": "80",
+            "name": "Document Number Check Digit",
+            "value": "8",
+            "source": "WHITE_LIGHT"
+        },
+        "9": {
+            "fieldId": "9",
+            "name": "Given Names",
+            "value": "PO MIN",
+            "source": "WHITE_LIGHT"
+        },
+        "81": {
+            "fieldId": "81",
+            "name": "Date Of Birth Check Digit",
+            "value": "2",
+            "source": "WHITE_LIGHT"
+        },
+        "82": {
+            "fieldId": "82",
+            "name": "Date Of Expiry Check Digit",
+            "value": "7",
+            "source": "WHITE_LIGHT"
+        },
+        "51": {
+            "fieldId": "51",
+            "name": "MRZ Strings",
+            "value": "IDARG19016612<8<<<<<<<<<<<<<<<^8106252M2809067ARG<<<<<<<<<<<2^CHUANG<<PO<MIN<<<<<<<<<<<<<<<<",
+            "source": "WHITE_LIGHT"
+        },
+        "84": {
+            "fieldId": "84",
+            "name": "Final Check Digit",
+            "value": "2",
+            "source": "WHITE_LIGHT"
+        }
+    },
+    "visualZone": {
+        "11": {
+            "fieldId": "11",
+            "name": "Nationality",
+            "value": "ARGENTINA",
+            "source": "WHITE_LIGHT"
+        },
+        "12": {
+            "fieldId": "12",
+            "name": "Sex",
+            "value": "M",
+            "source": "WHITE_LIGHT"
+        },
+        "2": {
+            "fieldId": "2",
+            "name": "Document Number",
+            "value": "19016612",
+            "source": "WHITE_LIGHT"
+        },
+        "167": {
+            "fieldId": "167",
+            "name": "Copy",
+            "value": "A",
+            "source": "WHITE_LIGHT"
+        },
+        "25": {
+            "fieldId": "25",
+            "name": "Surname And Given Names",
+            "value": "CHUANG PO MIN",
+            "source": "WHITE_LIGHT"
+        },
+        "6": {
+            "fieldId": "6",
+            "name": "Place Of Birth",
+            "value": "KAOHSIUNG,CHINA^-JALZA S16 AG0O 2013",
+            "source": "WHITE_LIGHT"
+        },
+        "17": {
+            "fieldId": "17",
+            "name": "Address",
+            "value": "SAN MARTIN 372 - GODOY CRUZ - GODOY CRUZ^MENDOZA",
+            "source": "WHITE_LIGHT"
+        },
+        "8": {
+            "fieldId": "8",
+            "name": "Surname",
+            "value": "CHUANG",
+            "source": "WHITE_LIGHT"
+        },
+        "9": {
+            "fieldId": "9",
+            "name": "Given Names",
+            "value": "PO MIN",
+            "source": "WHITE_LIGHT"
+        }
+    },
+    "barcode": {
+        "12": {
+            "fieldId": "12",
+            "name": "Sex",
+            "value": "M",
+            "source": "WHITE_LIGHT"
+        },
+        "2": {
+            "fieldId": "2",
+            "name": "Document Number",
+            "value": "19016612",
+            "source": "WHITE_LIGHT"
+        },
+        "167": {
+            "fieldId": "167",
+            "name": "Copy",
+            "value": "A",
+            "source": "WHITE_LIGHT"
+        },
+        "25": {
+            "fieldId": "25",
+            "name": "Surname And Given Names",
+            "value": "CHUANG PO MIN",
+            "source": "WHITE_LIGHT"
+        },
+        "4": {
+            "fieldId": "4",
+            "name": "Date Of Issue",
+            "value": "2013-09-06",
+            "source": "WHITE_LIGHT"
+        },
+        "5": {
+            "fieldId": "5",
+            "name": "Date Of Birth",
+            "value": "1981-06-25",
+            "source": "WHITE_LIGHT"
+        },
+        "522": {
+            "fieldId": "522",
+            "name": "Age At Issue",
+            "value": "32",
+            "source": "WHITE_LIGHT"
+        },
+        "523": {
+            "fieldId": "523",
+            "name": "Years Since Issue",
+            "value": "7",
+            "source": "WHITE_LIGHT"
+        },
+        "7": {
+            "fieldId": "7",
+            "name": "Personal Number",
+            "value": "00216889607",
+            "source": "WHITE_LIGHT"
+        },
+        "8": {
+            "fieldId": "8",
+            "name": "Surname",
+            "value": "CHUANG",
+            "source": "WHITE_LIGHT"
+        },
+        "9": {
+            "fieldId": "9",
+            "name": "Given Names",
+            "value": "PO MIN",
+            "source": "WHITE_LIGHT"
+        },
+        "185": {
+            "fieldId": "185",
+            "name": "Age",
+            "value": "40",
+            "source": "WHITE_LIGHT"
+        }
+    }
+}

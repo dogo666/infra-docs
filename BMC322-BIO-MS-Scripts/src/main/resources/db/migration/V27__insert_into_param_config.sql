@@ -1,0 +1,2 @@
+INSERT INTO db_macro_biometrics.mscompositeparamconfig (application_id, microservice_id, name, value, creationdate, modificationdate)
+VALUES ('EnrolamientoApp', 'macro-enrolamiento', 'configuracion-validar-huella-renaper', '{"validar-huella-renaper": {"local": "true","dev1": "true","stg1": "true","lab1": "true","test1": "true","pre-prd1": "true","pre-prd2": "true","prd1": "true","prd2": "true"}}', now(), now());

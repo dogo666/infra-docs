@@ -1,0 +1,18 @@
+{
+  "href" : "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/documents/GKEyuF8Wnzyn9YcLpo3oRQ/clientCapture",
+  "images" : [ {
+    "href" : "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/documents/GKEyuF8Wnzyn9YcLpo3oRQ/clientCapture/images/ko6bFPAed-RtxRGxY79xpg",
+    "sensitiveData" : {
+      "href" : "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/documents/GKEyuF8Wnzyn9YcLpo3oRQ/clientCapture/images/ko6bFPAed-RtxRGxY79xpg/sensitiveData",
+      "imageFormat" : "JPG"
+    },
+    "type" : "FRONT"
+  }, {
+    "href" : "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/documents/GKEyuF8Wnzyn9YcLpo3oRQ/clientCapture/images/v_BKwzEFr_T3-89EpYS8wQ",
+    "sensitiveData" : {
+      "href" : "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/documents/GKEyuF8Wnzyn9YcLpo3oRQ/clientCapture/images/v_BKwzEFr_T3-89EpYS8wQ/sensitiveData",
+      "imageFormat" : "JPG"
+    },
+    "type" : "BACK"
+  } ]
+}

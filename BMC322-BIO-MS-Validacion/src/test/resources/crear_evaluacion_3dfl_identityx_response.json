@@ -1,0 +1,73 @@
+{
+    "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzLbOo7xyxo-o2hC_TpYxONQ/idchecks/xwdx06rlCuL-YDAXxcDmqA/evaluation",
+    "id": "MMfOmA54r71m_kMz1eQm4A",
+    "created": "2021-10-06T14:37:25.991+00:00",
+    "evaluationPolicy": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/admin/policies/FfJZCcmW_rD5GbQNT58dvA",
+        "name": "globantEvalutationtest"
+    },
+    "results": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzLbOo7xyxo-o2hC_TpYxONQ/idchecks/xwdx06rlCuL-YDAXxcDmqA/evaluation/results",
+        "items": [
+            {
+                "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzLbOo7xyxo-o2hC_TpYxONQ/idchecks/xwdx06rlCuL-YDAXxcDmqA/evaluation/results/TwmMgX9UXVLLQAoAiDM35w?type=FA",
+                "id": "TwmMgX9UXVLLQAoAiDM35w",
+                "created": "2021-10-06T14:37:25.992+00:00",
+                "type": "FA",
+                "result": "MATCH",
+                "score": 0.0653333663940430,
+                "threshold": 0.000565,
+                "fmr": 0.000018937,
+                "evaluationPolicy": {
+                    "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/admin/policies/FfJZCcmW_rD5GbQNT58dvA"
+                },
+                "claimFace": {
+                    "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzLbOo7xyxo-o2hC_TpYxONQ/idchecks/xwdx06rlCuL-YDAXxcDmqA/faces/3M-3R6_v4A9BlQiDpnmM5w",
+                    "subtype": "SVR3DFL_BEST_FRAME",
+                    "sensitiveData": {
+                        "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzLbOo7xyxo-o2hC_TpYxONQ/idchecks/xwdx06rlCuL-YDAXxcDmqA/faces/3M-3R6_v4A9BlQiDpnmM5w/sensitiveData"
+                    },
+                    "livenessVideo": {
+                        "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzLbOo7xyxo-o2hC_TpYxONQ/idchecks/xwdx06rlCuL-YDAXxcDmqA/videos/mM9wK9laJg5TBycyDaxo6g"
+                    }
+                },
+                "challengeVideo": {
+                    "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzLbOo7xyxo-o2hC_TpYxONQ/idchecks/xwdx06rlCuL-YDAXxcDmqA/videos/mM9wK9laJg5TBycyDaxo6g",
+                    "subtype": "SVR3DFL_CHALLENGE",
+                    "sensitiveDataPresent": true,
+                    "sensitiveData": {
+                        "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzLbOo7xyxo-o2hC_TpYxONQ/idchecks/xwdx06rlCuL-YDAXxcDmqA/videos/mM9wK9laJg5TBycyDaxo6g/sensitiveData"
+                    }
+                }
+            },
+            {
+                "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzLbOo7xyxo-o2hC_TpYxONQ/idchecks/xwdx06rlCuL-YDAXxcDmqA/evaluation/results/ICcOfdAUyNVEfHOBneperg?type=LA",
+                "id": "ICcOfdAUyNVEfHOBneperg",
+                "created": "2021-10-06T14:37:25.995+00:00",
+                "type": "LA",
+                "result": "PASS",
+                "score": 0.95,
+                "threshold": 0.75,
+                "evaluationPolicy": {
+                    "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/admin/policies/FfJZCcmW_rD5GbQNT58dvA"
+                },
+                "challengeVideo": {
+                    "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzLbOo7xyxo-o2hC_TpYxONQ/idchecks/xwdx06rlCuL-YDAXxcDmqA/videos/mM9wK9laJg5TBycyDaxo6g",
+                    "subtype": "SVR3DFL_CHALLENGE",
+                    "sensitiveDataPresent": true,
+                    "sensitiveData": {
+                        "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzLbOo7xyxo-o2hC_TpYxONQ/idchecks/xwdx06rlCuL-YDAXxcDmqA/videos/mM9wK9laJg5TBycyDaxo6g/sensitiveData"
+                    }
+                },
+                "challengeType": "SVR3DFL",
+                "challenge": {
+                    "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzLbOo7xyxo-o2hC_TpYxONQ/idchecks/xwdx06rlCuL-YDAXxcDmqA/challenges/9ddo0hpr_EbfEzTN8rIQ4A",
+                    "type": "SVR3DFL",
+                    "additionalConfig": {
+                        "challengeAlias": "503cf1b3-9b71-4c36-855f-a22afd0369ca"
+                    }
+                }
+            }
+        ]
+    }
+}

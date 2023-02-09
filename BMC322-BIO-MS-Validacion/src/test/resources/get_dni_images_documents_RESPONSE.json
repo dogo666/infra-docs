@@ -1,0 +1,35 @@
+{
+  "href" : "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/documents",
+  "metadata" : {
+    "page" : 1,
+    "limit" : 20,
+    "pageCount" : 1,
+    "totalCount" : 1
+  },
+  "paging" : { },
+  "items" : [ {
+    "href" : "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/documents/GKEyuF8Wnzyn9YcLpo3oRQ",
+    "id" : "GKEyuF8Wnzyn9YcLpo3oRQ",
+    "created" : "2022-07-27T18:09:24.769+00:00",
+    "captureFormat" : "ID_CARD",
+    "captured" : null,
+    "type" : "Argentina - Id Card (2020)",
+    "classification" : "Identity Card",
+    "issuer" : "Argentina",
+    "clientCapture" : {
+      "href" : ""
+    },
+    "serverProcessed" : {
+      "href" : "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/documents/GKEyuF8Wnzyn9YcLpo3oRQ/serverProcessed"
+    },
+    "processingStatus" : "PROCESSED",
+    "submitted" : "2022-07-27T18:09:24.796+00:00",
+    "completed" : "2022-07-27T18:09:27.447+00:00",
+    "timeToProcess" : 2506,
+    "elapsedTime" : 2651,
+    "retryCount" : 0,
+    "resubmissionCount" : 0,
+    "allowedSensitiveDataPermissions" : "Get,Create,Update,Delete,Block,Unblock",
+    "processorName" : "REGULA(bancomacro-dev.identityx-cloud.com:8445)"
+  } ]
+}

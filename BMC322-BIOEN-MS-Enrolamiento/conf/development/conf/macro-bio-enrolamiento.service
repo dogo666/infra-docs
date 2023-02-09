@@ -1,0 +1,15 @@
+[Unit]
+Description=bio-enrolamiento
+After=syslog.target
+
+[Service]
+User=deployuser
+EnvironmentFile=/opt/macro/system/service/biometria/enrolamiento/conf/environment.conf
+ExecStart=/opt/macro/system/service/biometria/enrolamiento/macro-enrolamiento.jar
+SuccessExitStatus=143
+Restart=always
+RestartSec=5
+
+
+[Install]
+WantedBy=multi-user.target

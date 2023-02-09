@@ -1,0 +1,15 @@
+[Unit]
+Description=bio-datosgenerales
+After=syslog.target
+
+[Service]
+User=deployuser
+EnvironmentFile=/opt/macro/system/service/biometria/datosgenerales/conf/environment.conf
+ExecStart=/opt/macro/system/service/biometria/datosgenerales/macro-datosgenerales.jar
+SuccessExitStatus=143
+Restart=always
+RestartSec=5
+
+
+[Install]
+WantedBy=multi-user.target

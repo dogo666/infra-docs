@@ -1,0 +1,31 @@
+{
+	"href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ",
+	"id": "_4ZbN_-U0vr0KLrJ6ZnhWQ",
+	"created": "2022-07-27T18:09:24.430+00:00",
+	"referenceId": "0129767682F-REFID-1658945364236",
+	"status": "ACTIVE",
+	"documents": {
+		"href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/documents"
+	},
+	"faces": {
+		"href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/faces"
+	},
+	"evaluation": {
+		"href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/evaluation"
+	},
+	"challenges": {
+		"href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/challenges"
+	},
+	"videos": {
+		"href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/videos"
+	},
+	"summary": {
+		"href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/summary"
+	},
+	"reviews": {
+		"href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/reviews"
+	},
+	"webhooks": {
+		"href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/idchecks/_4ZbN_-U0vr0KLrJ6ZnhWQ/webhooks"
+	}
+}

@@ -1,0 +1,99 @@
+#!groovy
+
+pipeline {
+    agent { label 'java11' }
+    environment {
+        POM_VERSION = "UNINTIALIZED"
+        POM_PROJECT_NAME = "UNINTIALIZED"
+        DOCKER_REPO = "bio-dev-oficial/enrolamiento"
+        SERVICE_CREDS = credentials('JEN-ECR-Biometria-DEV-Globant')
+        AWS_REGION = "us-east-1"
+        CLUSTER_NAME = "eks-bio-dev"
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+    }
+    stages {
+        stage('Clone') {
+            steps {
+                echo 'Project already cloned by Jenkins Pipeline Setup'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building BMC322-BIO-MS-Enrolamiento Service Jar'
+                withMaven {
+                    sh "mvn clean source:jar install -Pkubernetes -Djenkins.build.number=${env.BUILD_NUMBER}"
+                    script {
+                        POM_VERSION = readMavenPom().getVersion()
+                        POM_PROJECT_NAME = readMavenPom().getArtifactId()
+                    }
+                    echo("Build POM_PROJECT_NAME=${POM_PROJECT_NAME} POM_VERSION=${POM_VERSION} Complete!!!")
+                }
+            }
+        }
+        stage('Coverage') {        	
+            steps {
+                echo 'Executing Sonar Coverage...'
+            	withCredentials([string(credentialsId: 'SONAR_HOST_URL_GLOBANT', variable: 'VAR_SONAR_HOST_URL_GLOBANT')]) {
+            	    sh "/opt/sonar-scanner-3.2.0.1227/bin/sonar-scanner -Dsonar.host.url=$VAR_SONAR_HOST_URL_GLOBANT -Dsonar.projectVersion=${POM_VERSION} -Dsonar.projectKey=DevGlobant-BMC322-BIO-MS-Enrolamiento -Dsonar.projectName='Globant BMC322-BIO-MS-Enrolamiento'"
+            	}                          
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                echo 'Building Docker Image...'
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'deploy-user-password', usernameVariable: 'USER_NAME', passwordVariable: 'PASSWORD']]) {
+                    echo "Docker Build"
+                    sh "docker build --network host -t ${POM_PROJECT_NAME}:${POM_VERSION} ."
+
+                    echo "Tagging image with version ${DOCKER_REPO}:${POM_VERSION}"
+                    sh "docker tag ${POM_PROJECT_NAME}:${POM_VERSION} 426994308472.dkr.ecr.us-east-1.amazonaws.com/${DOCKER_REPO}:${POM_VERSION}"
+
+                    echo "Tagging image with version ${DOCKER_REPO}:latest"
+                    sh "docker tag ${POM_PROJECT_NAME}:${POM_VERSION} 426994308472.dkr.ecr.us-east-1.amazonaws.com/${DOCKER_REPO}:lastest"
+                    echo 'Docker Build Complete!!!'
+                }
+            }
+        }
+        stage('Upload AWS ECR') {
+            steps {
+                echo 'Uploading Docker Image...'
+                script {
+                    docker.withRegistry('https://426994308472.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:AWS_ACCESS' ) {
+                        def customImage = docker.build("${DOCKER_REPO}:latest")
+                        customImage.push("latest")
+                        customImage.push("${POM_VERSION}")
+                        echo('Upload Complete!!!')
+                    }
+                }
+            }
+        }
+        stage('Deploy AWS EKS') {
+            agent { label 'lab-be-1' }
+            steps {
+                echo 'Applying kubernetes deployments'
+                sh '''
+                    export AWS_ACCESS_KEY_ID=$SERVICE_CREDS_USR
+                    export AWS_SECRET_ACCESS_KEY=$SERVICE_CREDS_PSW
+                    aws eks --region ${AWS_REGION} update-kubeconfig --name ${CLUSTER_NAME} --verbose
+                    echo 'Deploying dependencies...'
+                    kubectl config current-context
+                '''
+                sh "kubectl apply -f jenkins/dev-globant/deployment.yml -n biometria-ns"
+                sh "kubectl rollout restart deployment enrolamiento -n biometria-ns"
+                sh '''
+                    unset AWS_ACCESS_KEY_ID
+                    unset AWS_SECRET_ACCESS_KEY
+                '''
+                echo 'Deploy Complete!!!'
+            }
+        }
+    }
+    post {
+        cleanup {
+        echo 'Drop Files on local Repo'
+            deleteDir()  // SE BORRA EL WORKSPACE UTILIZADO POR JENKINS
+        }
+    }
+}

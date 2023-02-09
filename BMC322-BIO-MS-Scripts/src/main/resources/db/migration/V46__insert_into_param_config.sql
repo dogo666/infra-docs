@@ -1,0 +1,18 @@
+INSERT INTO mscompositeparamconfig (application_id,microservice_id,name,value,creationdate,modificationdate)
+VALUES
+	 ('BlanqueoPinWeb','macro-validacion','configuracion-validacion-renaper-3dfl-identity-x','{"validacion-renaper-3dfl-identity-x": {"local": "true","dev1": "true","stg1": "true","lab1": "true","test1": "true","pre-prd1": "true","pre-prd2": "true","prd1": "true","prd2": "true"}}', now(), now()),
+	 ('MandatoExtraccionAppId','macro-validacion','configuracion-validacion-renaper-3dfl-identity-x','{"validacion-renaper-3dfl-identity-x": {"local": "true","dev1": "true","stg1": "true","lab1": "true","test1": "true","pre-prd1": "true","pre-prd2": "true","prd1": "true","prd2": "true"}}', now(), now()),
+     ('SupervivenciaWeb','macro-validacion','configuracion-validacion-renaper-3dfl-identity-x','{"validacion-renaper-3dfl-identity-x": {"local": "true","dev1": "true","stg1": "true","lab1": "true","test1": "true","pre-prd1": "true","pre-prd2": "true","prd1": "true","prd2": "true"}}', now(), now()),
+     ('FeDeVidaWeb','macro-validacion','configuracion-validacion-renaper-3dfl-identity-x','{"validacion-renaper-3dfl-identity-x": {"local": "true","dev1": "true","stg1": "true","lab1": "true","test1": "true","pre-prd1": "true","pre-prd2": "true","prd1": "true","prd2": "true"}}', now(), now()),
+     ('GuruClavesApplicationId','macro-validacion','configuracion-validacion-renaper-3dfl-identity-x','{"validacion-renaper-3dfl-identity-x": {"local": "true","dev1": "true","stg1": "true","lab1": "true","test1": "true","pre-prd1": "true","pre-prd2": "true","prd1": "true","prd2": "true"}}', now(), now()),
+     ('DatosContactoApp','macro-validacion','configuracion-validacion-renaper-3dfl-identity-x','{"validacion-renaper-3dfl-identity-x": {"local": "true","dev1": "true","stg1": "true","lab1": "true","test1": "true","pre-prd1": "true","pre-prd2": "true","prd1": "true","prd2": "true"}}', now(), now());
+
+INSERT INTO mscompositeparamconfig (application_id,microservice_id,name,value,creationdate,modificationdate)
+VALUES
+	 ('BlanqueoPinWeb','macro-validacion','configuracion-umbral-renaper-3dfl-identity-x','{"umbral-renaper-3dfl-identity-x": {"local": "60","dev1": "60","stg1": "60","lab1": "60","test1": "60","pre-prd1": "60","pre-prd2": "60","prd1": "60","prd2": "60"}}', now(), now()),
+	 ('MandatoExtraccionAppId','macro-validacion','configuracion-umbral-renaper-3dfl-identity-x','{"umbral-renaper-3dfl-identity-x": {"local": "60","dev1": "60","stg1": "60","lab1": "60","test1": "60","pre-prd1": "60","pre-prd2": "60","prd1": "60","prd2": "60"}}', now(), now()),
+     ('SupervivenciaWeb','macro-validacion','configuracion-umbral-renaper-3dfl-identity-x','{"umbral-renaper-3dfl-identity-x": {"local": "60","dev1": "60","stg1": "60","lab1": "60","test1": "60","pre-prd1": "60","pre-prd2": "60","prd1": "60","prd2": "60"}}', now(), now()),
+     ('FeDeVidaWeb','macro-validacion','configuracion-umbral-renaper-3dfl-identity-x','{"umbral-renaper-3dfl-identity-x": {"local": "60","dev1": "60","stg1": "60","lab1": "60","test1": "60","pre-prd1": "60","pre-prd2": "60","prd1": "60","prd2": "60"}}', now(), now()),
+     ('GuruClavesApplicationId','macro-validacion','configuracion-umbral-renaper-3dfl-identity-x','{"umbral-renaper-3dfl-identity-x": {"local": "60","dev1": "60","stg1": "60","lab1": "60","test1": "60","pre-prd1": "60","pre-prd2": "60","prd1": "60","prd2": "60"}}', now(), now()),
+     ('DatosContactoApp','macro-validacion','configuracion-umbral-renaper-3dfl-identity-x','{"umbral-renaper-3dfl-identity-x": {"local": "60","dev1": "60","stg1": "60","lab1": "60","test1": "60","pre-prd1": "60","pre-prd2": "60","prd1": "60","prd2": "60"}}', now(), now());
+

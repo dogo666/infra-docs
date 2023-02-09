@@ -1,0 +1,147 @@
+#!groovy
+
+pipeline {
+    agent { label 'java11' }
+    environment {
+        JAR_NAME = 'macro-enrolamiento.jar'
+        CONF_NAME = 'macro-enrolamiento.conf'
+        LOG_NAME = 'logback-spring.xml'
+        ENVIRONMENT_NAME = "environment.conf"
+        SERVICE_NAME = "macro-bio-enrolamiento.service"
+        HOST_WORKSPACE_PATH = "/opt/macro/system/service/biometria/enrolamiento"
+        HOST_SYSTEMD_PATH = "/etc/systemd/system"
+        HOST_NAME = "172.28.198.51"
+        GROUP = "deployuser"
+        CREDENTIAL_GIT = "6e46ff20-e4dc-4caa-863f-a59fa1888b7d"
+        TRUSTSTORE_NAME = "cacerts.jks"
+        CERTIFICATE_NAME = "enrolamiento.p12"
+        RENAPER_CERTIFICATE_NAME = "BancoMacro_AFIS.p12"
+        CONF_PATH = "./conf/development/conf"
+        SECURITY_PATH = "./conf/development/security"
+        EMAIL = 'macro-devops@globant.com'
+        DEFAULT_SUBJECT = "Jenkins Support Configuration"
+        NEXUS_REGISTER = "hbma000dxu02.glx.corp.globant.com:5000"
+        NEXUS_REPO_PATH = "enrolamiento"
+        NEXUS_USER = "admin"
+        NEXUS_PASS = "admin123"
+        POM_VERSION = "UNINTIALIZED"
+        POM_PROJET_NAME = "UNINTIALIZED"
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+    }
+    stages {
+        stage('Clone') {
+            steps {
+                echo 'Clone'
+            }
+        }
+        stage('Build') {
+            steps {
+                withMaven {
+                    sh "mvn clean source:jar install -Dmaven.test.skip=true"
+                    script {
+                        POM_VERSION = readMavenPom().getVersion()
+                        POM_PROJET_NAME = readMavenPom().getArtifactId()
+                    }
+                    echo("POM_PROJET_NAME=${POM_PROJET_NAME} POM_VERSION=${POM_VERSION}")
+                }
+            }
+        }
+        stage('Construct') {
+            steps {
+                echo 'Build Notification Service Jar'
+                withMaven {
+                    sh "mvn clean source:jar install -Dmaven.test.skip=true -Djenkins.build.number=${env.BUILD_NUMBER}"
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploy'
+                withCredentials([string(credentialsId: 'jasypt-encryptor-password', variable: 'JASYPT_ENCRYPTOR_PASSWORD')]) {
+                    sh "echo 'JASYPT_ENCRYPTOR_PASSWORD=${JASYPT_ENCRYPTOR_PASSWORD}' >> ${CONF_PATH}/${ENVIRONMENT_NAME}"
+                }
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'deploy-user-password', usernameVariable: 'USER_NAME', passwordVariable: 'PASSWORD']]) {
+                    echo "Docker Build"
+                    sh "docker build -t ${POM_PROJET_NAME}:${POM_VERSION} ."
+
+                    echo "Docker Tag "
+                    sh "docker tag ${POM_PROJET_NAME}:${POM_VERSION} ${NEXUS_REGISTER}/${NEXUS_REPO_PATH}/${POM_PROJET_NAME}:${POM_VERSION}"
+
+                    echo "Nexus register Docker login"
+                    sh "docker login -u ${NEXUS_USER} -p ${NEXUS_PASS} ${NEXUS_REGISTER}"
+
+                    echo "Docker Push"
+                    sh "docker push ${NEXUS_REGISTER}/${NEXUS_REPO_PATH}/${POM_PROJET_NAME}:${POM_VERSION}"
+
+                    echo "Create Workspace Path"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S mkdir -p ${HOST_WORKSPACE_PATH}'"
+
+                    echo "Create Backup Path"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S mkdir -p ${HOST_WORKSPACE_PATH}/backup'"
+
+                    echo "Create Conf Path"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S mkdir -p ${HOST_WORKSPACE_PATH}/conf'"
+
+                    echo "Create Logs Path"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S mkdir -p ${HOST_WORKSPACE_PATH}/logs'"
+
+                    echo "Create Security Certificate Path"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S mkdir -p ${HOST_WORKSPACE_PATH}/security'"
+
+                    echo "Change Workspace Permissions"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S chown -R ${USER_NAME}:${GROUP} ${HOST_WORKSPACE_PATH}/'"
+
+                    echo "Backup Jar"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} '[ -f ${HOST_WORKSPACE_PATH}/${JAR_NAME} ] && echo ${PASSWORD} | sudo -S mv ${HOST_WORKSPACE_PATH}/${JAR_NAME} ${HOST_WORKSPACE_PATH}/backup/${JAR_NAME}.${BUILD_TIMESTAMP}' || true"
+
+                    echo "Copy Truststore"
+                    sh "scp ${SECURITY_PATH}/${TRUSTSTORE_NAME} ${USER_NAME}@${HOST_NAME}:${HOST_WORKSPACE_PATH}/security"
+
+                    echo "Copy Jar"
+                    sh "scp ./target/${JAR_NAME} ${USER_NAME}@${HOST_NAME}:${HOST_WORKSPACE_PATH}/"
+
+                    echo "Copy Certificate"
+                    sh "scp ${SECURITY_PATH}/${CERTIFICATE_NAME} ${USER_NAME}@${HOST_NAME}:${HOST_WORKSPACE_PATH}/security"
+                    
+                    echo "Copy Renaper Certificate"
+                    sh "scp ${SECURITY_PATH}/${RENAPER_CERTIFICATE_NAME} ${USER_NAME}@${HOST_NAME}:${HOST_WORKSPACE_PATH}/security"
+
+                    echo "Copy Conf"
+                    sh "scp ${CONF_PATH}/${CONF_NAME} ${USER_NAME}@${HOST_NAME}:${HOST_WORKSPACE_PATH}/"
+
+                    echo "Copy Log"
+                    sh "scp ${CONF_PATH}/${LOG_NAME} ${USER_NAME}@${HOST_NAME}:${HOST_WORKSPACE_PATH}/conf"
+
+                    echo "Copy Environment"
+                    sh "scp ${CONF_PATH}/${ENVIRONMENT_NAME} ${USER_NAME}@${HOST_NAME}:${HOST_WORKSPACE_PATH}/conf"
+
+                    echo "Copy Service"
+                    sh "scp ${CONF_PATH}/${SERVICE_NAME} ${USER_NAME}@${HOST_NAME}:${HOST_WORKSPACE_PATH}/"
+
+                    echo "Move Service"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S mv ${HOST_WORKSPACE_PATH}/${SERVICE_NAME} ${HOST_SYSTEMD_PATH}' || true"
+
+                    echo "Change Jar Permissions"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S chmod -R 0775 ${HOST_WORKSPACE_PATH}/${JAR_NAME}'"
+
+                    echo "Change Conf Permissions"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S chmod -R 0775 ${HOST_WORKSPACE_PATH}/${CONF_NAME}'"
+
+                    echo "Change Log Permissions"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S chmod -R 0775 ${HOST_WORKSPACE_PATH}/conf/${LOG_NAME}'"
+
+                    echo "Reload Daemon"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S systemctl daemon-reload' || true"
+
+                    echo "Stop Service"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S pkill -9 -f ${JAR_NAME}' || true"
+
+                    echo "Start Service"
+                    sh "ssh ${USER_NAME}@${HOST_NAME} 'echo ${PASSWORD} | sudo -S systemctl start ${SERVICE_NAME}'"
+                }
+            }
+        }
+    }
+}

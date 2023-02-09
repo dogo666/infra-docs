@@ -1,0 +1,12 @@
+{
+  "enroladores": [
+    {
+      "email": "pomin.chuang@globant.com",
+      "tipodocumento": "CC",
+      "numerodocumento": "123546",
+      "genero": "M",
+      "sucursal": "Sucursal",
+      "idcobis": "126456asd"
+    }
+  ]
+}

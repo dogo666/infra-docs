@@ -1,0 +1,102 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  macro-datosgenerales-configmap-version: 'macro-bio-datosgenerales'
+  macro-microservicio-nombre: 'macro-datosgenerales'
+  macro-spring-serviceid: 'macro-datosgenerales'
+  spring-profiles-active: 'kubernetes,application,database,esb,externalServices,internalServices,messages,security,templatesPdf,swagger'
+  jasypt-encryptor-password: 'l4p4ssd3m4cr0'
+metadata:
+  name: macro-datosgenerales-basic
+  namespace: biometria-ns
+  labels:
+    app: datosgenerales
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datosgenerales
+  namespace: biometria-ns
+  labels:
+    app: datosgenerales
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datosgenerales
+  template:
+    metadata:
+      labels:
+        app: datosgenerales
+    spec:
+      serviceAccountName: biometria-be-service-account
+      automountServiceAccountToken: true
+      containers:
+        - name: datosgenerales
+          image: 110593001440.dkr.ecr.us-east-1.amazonaws.com/bio-pre/datosgenerales:latest
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: tlskey
+            mountPath: /etc/keystore/
+            readOnly: true
+          - name: service-secrets
+            mountPath: "/etc/secrets"
+            readOnly: true
+          ports:
+            - containerPort: 8327
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 0.7Gi
+          livenessProbe:
+            httpGet:
+              path: /macro-bio-datosgenerales/manager/health/liveness
+              scheme: HTTPS
+              port: 8327
+            failureThreshold: 30
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /macro-bio-datosgenerales/manager/health/readiness
+              scheme: HTTPS
+              port: 8327
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  name: macro-datosgenerales-basic
+                  key: spring-profiles-active
+            - name: MACRO_SPRING_SERVICEID
+              valueFrom:
+                configMapKeyRef:
+                  name: macro-datosgenerales-basic
+                  key: macro-spring-serviceid
+            - name: MACRO_MICROSERVICIO_NOMBRE
+              valueFrom:
+                configMapKeyRef:
+                  name: macro-datosgenerales-basic
+                  key: macro-microservicio-nombre
+            - name: CONFIGMAP_VERSION
+              valueFrom:
+                configMapKeyRef:
+                  name: macro-datosgenerales-basic
+                  key: macro-datosgenerales-configmap-version
+            - name: JASYPT_ENCRYPTOR_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: macro-datosgenerales-basic
+                  key: jasypt-encryptor-password
+      volumes:
+        - name: service-secrets
+          secret:
+            secretName: datosgenerales-secret
+        - name: tlskey
+          secret:
+            secretName: keystore

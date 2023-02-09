@@ -1,0 +1,16 @@
+{
+  "rostro": {
+    "registrado": 1,
+    "enrolado": 1,
+    "idInterno": "idinterno",
+    "fecha": "yyyy-mm-dd",
+    "enrolador":"enrolador",
+    "confidence": 88
+  },
+  "huella": {
+    "registrado": 1,
+    "calificadores": [1, 2, 3, 4, 5, 6, 9],
+    "fecha": "yyyy-mm-dd",
+    "enrolador":"enrolador"
+  }
+}

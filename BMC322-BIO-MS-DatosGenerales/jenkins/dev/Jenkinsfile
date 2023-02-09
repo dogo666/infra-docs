@@ -1,0 +1,114 @@
+#!groovy
+
+pipeline {
+    agent { label 'java11' }
+    environment {
+        POM_VERSION = "UNINTIALIZED"
+        POM_PROJECT_NAME = "UNINTIALIZED"
+        DOCKER_REPO = "bio-dev/datosgenerales"
+        SERVICE_CREDS = credentials('JEN-ECR-Biometria-DEV')
+        CLUSTER_NAME = "biometria-dev"
+        image = "datosgenerales"
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+    }
+    stages {
+        stage('Clone') {
+            steps {
+                echo 'Project already cloned by Jenkins Pipeline Setup'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building BMC322-BIO-MS-DatosGenerales Service Jar'
+                withMaven {
+                    sh "mvn clean source:jar install -Pkubernetes -Djenkins.build.number=${env.BUILD_NUMBER}"
+                    script {
+                        POM_VERSION = readMavenPom().getVersion()
+                        POM_PROJECT_NAME = readMavenPom().getArtifactId()
+                    }
+                    echo("Build POM_PROJECT_NAME=${POM_PROJECT_NAME} POM_VERSION=${POM_VERSION} Complete!!!")
+                }
+            }
+        }
+        stage('Coverage') {        	
+            steps {
+                echo 'Executing Sonar Coverage...'
+            	withCredentials([string(credentialsId: 'SONAR_HOST_URL_MACRO', variable: 'VAR_SONAR_HOST_URL_MACRO')]) {
+                	sh "/opt/sonar-scanner-3.2.0.1227/bin/sonar-scanner -Dsonar.host.url=$VAR_SONAR_HOST_URL_MACRO -Dsonar.projectVersion=${POM_VERSION} -Dsonar.projectKey=DevMacro-BMC322-BIO-MS-DatosGenerales -Dsonar.projectName='Macro BMC322-BIO-MS-DatosGenerales'"
+            	}                          
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                echo 'Building Docker Image...'
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'deploy-user-password', usernameVariable: 'USER_NAME', passwordVariable: 'PASSWORD']]) {
+                    echo "Docker Build"
+                    sh "docker build --network host -t ${POM_PROJECT_NAME}:${POM_VERSION} ."
+
+                    echo "Tagging image with version ${DOCKER_REPO}:${POM_VERSION}"
+                    sh "docker tag ${POM_PROJECT_NAME}:${POM_VERSION} ${DOCKER_REPO}:${POM_VERSION}"
+
+                    echo "Tagging image with version ${DOCKER_REPO}:latest"
+                    sh "docker tag ${POM_PROJECT_NAME}:${POM_VERSION} ${DOCKER_REPO}:latest"
+
+                    echo "Copying image to toolserver Macro versioned"
+                    sh "docker save ${DOCKER_REPO}:${POM_VERSION} | gzip | pv | ssh jenkins@srvtdto1ap-test docker load"
+
+                    echo "Copying image to toolserver Macro latest"
+                    sh "docker save ${DOCKER_REPO}:latest | gzip | pv | ssh jenkins@srvtdto1ap-test docker load"
+                    
+                    echo "Removing images"
+                    sh '''
+                    docker images | grep ${image} | awk '{print $1 ":" $2}' | xargs docker rmi || true
+                    '''
+                    stash includes: 'jenkins/dev/*', name: 'deployment'
+                    echo 'Docker Build Complete!!!'
+                }
+            }
+        }
+        stage('Upload AWS ECR') {
+            agent { label 'srvtdto1ap-test' }
+            options { skipDefaultCheckout true }
+            steps {
+                echo 'Uploading Docker Image...'
+                script {
+                    docker.withRegistry('https://049551109034.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:AWS_ACCESS_DEV_MACRO' ) {
+                        def customImage = docker.image("${DOCKER_REPO}")
+                        customImage.push("latest")
+                        customImage.push("${POM_VERSION}")
+                        echo('Upload Complete!!!')
+                    }
+                }
+            }
+        }
+        stage('Deploy AWS EKS') {
+            agent { label 'srvtdto1ap-test' }
+            options { skipDefaultCheckout true }
+            steps {
+                echo 'Applying Kubernetes Deployments'
+                unstash 'deployment'
+                sh '''
+                export HOME=${WORKSPACE}
+                export AWS_ACCESS_KEY_ID=$SERVICE_CREDS_USR
+                export AWS_SECRET_ACCESS_KEY=$SERVICE_CREDS_PSW
+                ls -lhS
+                aws eks --region us-east-1 update-kubeconfig --name $CLUSTER_NAME --verbose
+                kubectl apply -f jenkins/dev/deployment.yml -n biometria-ns
+                kubectl rollout restart deployment datosgenerales -n biometria-ns
+                unset AWS_ACCESS_KEY_ID
+                unset AWS_SECRET_ACCESS_KEY
+                docker images | grep ${image} | awk '{print $1 ":" $2}' | xargs docker rmi || true
+                '''
+                echo 'Deploy Complete!!!'
+            }
+        }
+    }
+    post {
+        cleanup {
+        echo 'Drop Files on local Repo'
+            deleteDir()  // SE BORRA EL WORKSPACE UTILIZADO POR JENKINS
+        }
+    }
+}

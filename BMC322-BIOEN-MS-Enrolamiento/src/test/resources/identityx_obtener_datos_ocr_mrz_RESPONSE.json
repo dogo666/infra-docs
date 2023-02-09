@@ -1,0 +1,206 @@
+{
+    "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAz_yzysVkKKl0uGGbUhTv_xg/idchecks/JiKMCha1p93c_ybZ4GiwBA/documents/oCIL4TtgH5uOo7z1aJTghQ/serverProcessed/ocrData/sensitiveData",
+    "mrz": {
+        "11": {
+            "fieldId": "11",
+            "name": "Nationality",
+            "value": "Argentina",
+            "source": "WHITE_LIGHT"
+        },
+        "12": {
+            "fieldId": "12",
+            "name": "Sex",
+            "value": "M",
+            "source": "WHITE_LIGHT"
+        },
+        "35": {
+            "fieldId": "35",
+            "name": "MRZ Type",
+            "value": "ID-1",
+            "source": "WHITE_LIGHT"
+        },
+        "25": {
+            "fieldId": "25",
+            "name": "Surname And Given Names",
+            "value": "ROMANO ALDO NORBERTO",
+            "source": "WHITE_LIGHT"
+        },
+        "26": {
+            "fieldId": "26",
+            "name": "Nationality Code",
+            "value": "ARG",
+            "source": "WHITE_LIGHT"
+        },
+        "38": {
+            "fieldId": "38",
+            "name": "Issuing State Name",
+            "value": "Argentina",
+            "source": "WHITE_LIGHT"
+        },
+        "185": {
+            "fieldId": "185",
+            "name": "Age",
+            "value": "55",
+            "source": "WHITE_LIGHT"
+        },
+        "0": {
+            "fieldId": "0",
+            "name": "Document Class Code",
+            "value": "ID",
+            "source": "WHITE_LIGHT"
+        },
+        "1": {
+            "fieldId": "1",
+            "name": "Issuing State Code",
+            "value": "ARG",
+            "source": "WHITE_LIGHT"
+        },
+        "364": {
+            "fieldId": "364",
+            "name": "Remainder Term",
+            "value": "94",
+            "source": "WHITE_LIGHT"
+        },
+        "2": {
+            "fieldId": "2",
+            "name": "Document Number",
+            "value": "17999725",
+            "source": "WHITE_LIGHT"
+        },
+        "3": {
+            "fieldId": "3",
+            "name": "Date Of Expiry",
+            "value": "2030-01-14",
+            "source": "WHITE_LIGHT"
+        },
+        "5": {
+            "fieldId": "5",
+            "name": "Date Of Birth",
+            "value": "1966-11-04",
+            "source": "WHITE_LIGHT"
+        },
+        "8": {
+            "fieldId": "8",
+            "name": "Surname",
+            "value": "ROMANO",
+            "source": "WHITE_LIGHT"
+        },
+        "80": {
+            "fieldId": "80",
+            "name": "Document Number Check Digit",
+            "value": "3",
+            "source": "WHITE_LIGHT"
+        },
+        "9": {
+            "fieldId": "9",
+            "name": "Given Names",
+            "value": "ALDO NORBERTO",
+            "source": "WHITE_LIGHT"
+        },
+        "81": {
+            "fieldId": "81",
+            "name": "Date Of Birth Check Digit",
+            "value": "2",
+            "source": "WHITE_LIGHT"
+        },
+        "82": {
+            "fieldId": "82",
+            "name": "Date Of Expiry Check Digit",
+            "value": "5",
+            "source": "WHITE_LIGHT"
+        },
+        "51": {
+            "fieldId": "51",
+            "name": "MRZ Strings",
+            "value": "IDARG17999725<3<<<<<<<<<<<<<<<^6611042M3001145ARG<<<<<<<<<<<0^ROMANO<<ALDO<NORBERTO<<<<<<<<<",
+            "source": "WHITE_LIGHT"
+        },
+        "84": {
+            "fieldId": "84",
+            "name": "Final Check Digit",
+            "value": "0",
+            "source": "WHITE_LIGHT"
+        }
+    },
+    "visualZone": {
+        "11": {
+            "fieldId": "11",
+            "name": "Nationality",
+            "value": "ARGENT INA",
+            "source": "WHITE_LIGHT"
+        },
+        "12": {
+            "fieldId": "12",
+            "name": "Sex",
+            "value": "M",
+            "source": "WHITE_LIGHT"
+        },
+        "25": {
+            "fieldId": "25",
+            "name": "Surname And Given Names",
+            "value": "ROMANO ALDO NORBERTO",
+            "source": "WHITE_LIGHT"
+        },
+        "17": {
+            "fieldId": "17",
+            "name": "Address",
+            "value": "JUFRE 250 6 E - VILLA CRESPO - CIUDAD DE^BUENOS AIRES - CIUDAD DE BUENOS AIRES",
+            "source": "WHITE_LIGHT"
+        },
+        "25.11274": {
+            "fieldId": "25.11274",
+            "name": "Surname And Given Names (11274)",
+            "value": "ROMANO ALDO NORBERTO",
+            "source": "WHITE_LIGHT"
+        },
+        "6.11274": {
+            "fieldId": "6.11274",
+            "name": "Place Of Birth (11274)",
+            "value": "BUENOS AIRES",
+            "source": "WHITE_LIGHT"
+        },
+        "9.11274": {
+            "fieldId": "9.11274",
+            "name": "Given Names (11274)",
+            "value": "ALDO NORBERTO",
+            "source": "WHITE_LIGHT"
+        },
+        "2": {
+            "fieldId": "2",
+            "name": "Document Number",
+            "value": "17999725",
+            "source": "WHITE_LIGHT"
+        },
+        "167": {
+            "fieldId": "167",
+            "name": "Copy",
+            "value": "A",
+            "source": "WHITE_LIGHT"
+        },
+        "6": {
+            "fieldId": "6",
+            "name": "Place Of Birth",
+            "value": "BUENOS AIRES",
+            "source": "WHITE_LIGHT"
+        },
+        "8": {
+            "fieldId": "8",
+            "name": "Surname",
+            "value": "ROMANO",
+            "source": "WHITE_LIGHT"
+        },
+        "9": {
+            "fieldId": "9",
+            "name": "Given Names",
+            "value": "ALDO NORBERTO",
+            "source": "WHITE_LIGHT"
+        },
+        "8.11274": {
+            "fieldId": "8.11274",
+            "name": "Surname (11274)",
+            "value": "ROMANO",
+            "source": "WHITE_LIGHT"
+        }
+    },
+    "barcode": {}
+}

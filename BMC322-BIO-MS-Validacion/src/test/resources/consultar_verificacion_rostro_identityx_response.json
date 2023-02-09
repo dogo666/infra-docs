@@ -1,0 +1,40 @@
+{
+  "href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/authenticationRequests/QTAzvxBkKTnCPqruT-Powm3xkh",
+  "id": "QTAzvxBkKTnCPqruT-Powm3xkh",
+  "complete": true,
+  "authenticationRequestId": "reg-20210806-602",
+  "description": "postman_test_face",
+  "verificationResult": "Y",
+  "expiration": "2021-08-23T20:25:59.630+00:00",
+  "availableRetries": 99,
+  "totalRetriesAllowed": 99,
+  "processed": "2021-08-23T20:11:02.347+00:00",
+  "created": "2021-08-23T20:10:59.634+00:00",
+  "type": "RA",
+  "status": "COMPLETED_SUCCESSFUL",
+  "authenticationAttempts": [
+    {
+      "attemptId": "1000162037:1000163062",
+      "created": "2021-08-23T20:11:02.265+00:00",
+      "decision": "Y",
+      "reason": "Passive face liveness check passed",
+      "state": "COMPLETE",
+      "attributes": {
+        "livenessFmrThresholdAttribute": "0.5",
+        "livenessMatchPolicyName": "IdFace Passive Liveness"
+      },
+      "items": [
+        {
+          "created": "2021-08-23T20:11:02.265+00:00",
+          "type": "Face",
+          "score": 0.7633086,
+          "result": "MATCH",
+          "reason": "Passive face liveness check passed",
+          "dataSample": {
+            "href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/authenticationRequests/QTAzvxBkKTnCPqruT-Powm3xkh/samples/0jlHhS_9-pU8apaTvqZi-A"
+          }
+        }
+      ]
+    }
+  ]
+}

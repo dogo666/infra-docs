@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    meta.helm.sh/release-name: wiki
+    meta.helm.sh/release-namespace: my-ing
+  creationTimestamp: "2022-08-04T17:02:37Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: wiki
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: wiki
+    app.kubernetes.io/version: latest
+    helm.sh/chart: wiki-2.2.17
+  name: wiki
+  namespace: my-ing
+  resourceVersion: "1528597"
+  uid: e0a37fbf-3071-4004-858a-c69159011f58
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: wiki
+      app.kubernetes.io/name: wiki
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: wiki
+        app.kubernetes.io/name: wiki
+    spec:
+      containers:
+      - env:
+        - name: DB_TYPE
+          value: postgres
+        - name: DB_HOST
+          value: wiki-postgresql
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_NAME
+          value: wiki
+        - name: DB_USER
+          value: postgres
+        - name: DB_SSL
+          value: "false"
+        - name: DB_SSL_CA
+        - name: DB_PASS
+          value: rootpass1234
+        - name: HA_ACTIVE
+          value: "false"
+        image: requarks/wiki:latest
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: wiki
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthz
+            port: http
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        securityContext: {}
+        startupProbe:
+          failureThreshold: 60
+          httpGet:
+            path: /healthz
+            port: http
+            scheme: HTTP
+          initialDelaySeconds: 15
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 5
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: wiki
+      serviceAccountName: wiki
+      terminationGracePeriodSeconds: 30

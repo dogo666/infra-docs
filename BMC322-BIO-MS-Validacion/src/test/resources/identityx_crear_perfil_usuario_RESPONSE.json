@@ -1,0 +1,42 @@
+{
+    "href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzEQAqVF64VRA__azO8o5S-g",
+    "id": "QTAzEQAqVF64VRA__azO8o5S-g",
+    "userId": "testUserS012",
+    "created": "2021-06-24T23:09:12.185+0000",
+    "updated": "2021-06-24T23:09:12.185+0000",
+    "nextPossibleDirectOtpDtm": "2021-06-24T23:09:12.215+0000",
+    "pinEnrolled": false,
+    "faceEnrolled": false,
+    "voiceEnrolled": false,
+    "keystrokesEnrolled": false,
+    "failedVerificationCount": 0,
+    "accountUnlockedCount": 0,
+    "status": "ACTIVE",
+    "tenant": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/IdentityXServices/rest/v1/tenants/DEFAULT TENANT"
+    },
+    "applications": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzEQAqVF64VRA__azO8o5S-g/applications"
+    },
+    "registrations": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzEQAqVF64VRA__azO8o5S-g/registrations"
+    },
+    "authenticators": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzEQAqVF64VRA__azO8o5S-g/authenticators"
+    },
+    "authenticationRequests": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzEQAqVF64VRA__azO8o5S-g/authenticationRequests"
+    },
+    "sponsorships": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzEQAqVF64VRA__azO8o5S-g/sponsorships"
+    },
+    "registrationChallenges": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzEQAqVF64VRA__azO8o5S-g/registrationChallenges"
+    },
+    "enrollments": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzEQAqVF64VRA__azO8o5S-g/enrollments"
+    },
+    "samples": {
+        "href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzEQAqVF64VRA__azO8o5S-g/samples"
+    }
+}

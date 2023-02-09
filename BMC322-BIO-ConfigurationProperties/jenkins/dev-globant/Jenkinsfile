@@ -1,0 +1,84 @@
+#!groovy
+
+pipeline {
+    agent { label 'lab-be-1' }
+    environment {
+        SERVICE_CREDS = credentials('JEN-ECR-Biometria-DEV-Globant')
+        AWS_REGION = "us-east-1"
+        CLUSTER_NAME = "eks-bio-dev"
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+    }
+    stages {
+        stage ('Clean Workspace') {
+            steps {
+                sh "rm -f -- cloud/dev-globant/datosgenerales/application.properties"
+                sh "rm -f -- cloud/dev-globant/enrolamiento/application.properties"
+                sh "rm -f -- cloud/dev-globant/validacion/application.properties"
+                sh "rm -f -- cloud/dev-globant/enrolamiento-apigateway/application.properties"
+                sh "rm -f -- cloud/dev-globant/validacion-apigateway/application.properties"
+                sh "rm -f -- cloud/dev-globant/etl-migracion-huellas/application.properties"
+            }
+        }
+        stage ('Build Properties') {
+            steps {
+                sh "cat cloud/dev-globant/datosgenerales/*.properties > cloud/dev-globant/datosgenerales/application.properties"
+                sh "cat cloud/dev-globant/enrolamiento/*.properties > cloud/dev-globant/enrolamiento/application.properties"
+                sh "cat cloud/dev-globant/validacion/*.properties > cloud/dev-globant/validacion/application.properties"
+                sh "cat cloud/dev-globant/enrolamiento-apigateway/*.properties > cloud/dev-globant/enrolamiento-apigateway/application.properties"
+                sh "cat cloud/dev-globant/validacion-apigateway/*.properties > cloud/dev-globant/validacion-apigateway/application.properties"
+                sh "cat cloud/dev-globant/etl-migracion-huellas/*.properties > cloud/dev-globant/etl-migracion-huellas/application.properties"
+
+                echo "Generate ConfigMap"
+                sh "/home/deployuser/kustomize build ./cloud/dev-globant > configmap-dev.yml"
+            }
+        }
+        stage ('Deploy properties') {
+            steps {
+                echo "Apply aws configmap "
+                sh '''
+                    export AWS_ACCESS_KEY_ID=$SERVICE_CREDS_USR
+                    export AWS_SECRET_ACCESS_KEY=$SERVICE_CREDS_PSW
+                    aws eks --region ${AWS_REGION} update-kubeconfig --name ${CLUSTER_NAME} --verbose
+                    echo 'Deploying dependencies...'
+                    kubectl config current-context
+                '''
+                sh "kubectl apply -f configmap-dev.yml -n biometria-ns"
+                echo "Apply aws secrets + db service "
+                sh "kubectl apply -f ./jenkins/dev-globant -n biometria-ns"
+                sh '''
+                    unset AWS_ACCESS_KEY_ID
+                    unset AWS_SECRET_ACCESS_KEY
+                '''
+            }
+        }
+        stage('Reinicio de servicios') {
+            when {
+                expression { return params.REINICIA_SERVICIOS == 'Y' }
+            }
+            steps {
+                echo "----------    Se reinician los pods ${params.SERVICIOS}"
+                sh '''
+                    export AWS_ACCESS_KEY_ID=$SERVICE_CREDS_USR
+                    export AWS_SECRET_ACCESS_KEY=$SERVICE_CREDS_PSW
+                    aws eks --region ${AWS_REGION} update-kubeconfig --name ${CLUSTER_NAME} --verbose
+                    echo 'Deploying dependencies...'
+                    kubectl config current-context
+                    kubectl get deployments -n biometria-ns
+
+                    for serv in $(echo ''' + params.SERVICIOS + ''' | tr "," "\n")
+                    do
+                        kubectl rollout restart deployment ${serv} -n biometria-ns
+                        kubectl rollout status deployment ${serv} -n biometria-ns
+                    done
+
+                    kubectl get pods -n biometria-ns
+
+                    unset AWS_ACCESS_KEY_ID
+                    unset AWS_SECRET_ACCESS_KEY
+                '''
+            }
+        }
+    }
+}

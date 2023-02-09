@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+  namespace: biometria-ns
+spec:
+  type: ExternalName
+  externalName: database-1.cmnuvugxe03s.us-east-1.rds.amazonaws.com
+  selector: {} 

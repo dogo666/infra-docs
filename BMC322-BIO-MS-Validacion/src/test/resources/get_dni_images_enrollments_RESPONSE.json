@@ -1,0 +1,50 @@
+{
+	"metadata": {
+		"limit": 1,
+		"page": 1,
+		"totalCount": 1
+	},
+	"paging": {
+		"first": null,
+		"previous": null,
+		"next": null,
+		"last": null
+	},
+	"href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/enrollments",
+	"items": [
+		{
+			"href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/enrollments/E9462eECZ5ldI36_LV8r5A",
+			"id": "E9462eECZ5ldI36_LV8r5A",
+			"created": "2022-07-25T17:38:59.425+00:00",
+			"updated": "2022-07-27T18:10:43.864+00:00",
+			"type": "DaonFace 5.0",
+			"subtype": "Face",
+			"state": "Ready",
+			"user": {
+				"href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw"
+			},
+			"tenant": {
+				"href": "https://bancomacro-dev.identityx-cloud.com/IdentityXServices/rest/v1/tenants/DEFAULT TENANT"
+			},
+			"samples": {
+				"metadata": {
+					"limit": 1,
+					"page": 1,
+					"totalCount": 1
+				},
+				"paging": {
+					"first": null,
+					"previous": null,
+					"next": null,
+					"last": null
+				},
+				"href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/enrollments/E9462eECZ5ldI36_LV8r5A/samples",
+				"items": [
+					{
+						"href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/samples/lwLwOIWTofMxKiplSyIguw"
+					}
+				]
+			}
+		}
+	]
+}

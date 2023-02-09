@@ -1,0 +1,15 @@
+[Unit]
+Description=bio-validacion
+After=syslog.target
+
+[Service]
+User=deployuser
+EnvironmentFile=/opt/macro/system/service/biometria/validacion/conf/environment.conf
+ExecStart=/opt/macro/system/service/biometria/validacion/macro-validacion.jar
+SuccessExitStatus=143
+Restart=always
+RestartSec=5
+
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-test
+  namespace: test-rapido
+  annotations:
+    kubernetes.io/ingress.class: "gce-internal"
+spec:
+  defaultBackend:
+    service:
+      name: neg-service
+      port:
+        number: 80

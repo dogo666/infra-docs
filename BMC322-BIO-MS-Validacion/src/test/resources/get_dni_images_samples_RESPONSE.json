@@ -1,0 +1,98 @@
+{
+	"metadata": {
+		"limit": 1,
+		"page": 1,
+		"totalCount": 1
+	},
+	"paging": {
+		"first": null,
+		"previous": null,
+		"next": null,
+		"last": null
+	},
+	"href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/enrollments/E9462eECZ5ldI36_LV8r5A/samples",
+	"items": [
+		{
+			"href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/samples/lwLwOIWTofMxKiplSyIguw",
+			"id": "lwLwOIWTofMxKiplSyIguw",
+			"type": "Face",
+			"usable": true,
+			"lastEvaluated": "2022-07-27T18:10:43.432+00:00",
+			"evaluationResult": "OK - (0)",
+			"evaluations": [
+				{
+					"evaluationDate": "2022-07-27T18:10:42.823+00:00",
+					"resultCode": 0,
+					"resultMessage": "OK",
+					"qualityAssessmentResult": {
+						"passed": true,
+						"metaData": {
+							"EyesOpenConfidence": "0.944444",
+							"UniformLightingConfidence": "0.85",
+							"FrontalPosePass": "true",
+							"FaceFoundPass": "true",
+							"PoseAngleRoll": "2",
+							"FaceCntrPositionY": "408",
+							"FaceCntrPositionX": "631",
+							"SharpnessPass": "true",
+							"FaceBoxUpperLeftCornerY": "208",
+							"FaceBoxUpperLeftCornerX": "430",
+							"OnlyOneFaceConfidence": "1.0",
+							"InterEyesDistancePass": "true",
+							"ExposurePass": "true",
+							"FaceBoxLowerRightCornerX": "832",
+							"RightEyePositionX": "709",
+							"FaceBoxLowerRightCornerY": "607",
+							"RightEyePositionY": "322",
+							"GrayscaleDensityPass": "true",
+							"LeftEyePositionY": "317",
+							"policyName": "DaonFace v5.0 Template Generation",
+							"PoseAngleRollPass": "true",
+							"FrontalPoseConfidence": "0.85",
+							"LeftEyePositionX": "544",
+							"EyesOpenPass": "true",
+							"Exposure": "43",
+							"EyesFoundConfidence": "0.854456",
+							"UniformLightingPass": "true",
+							"Sharpness": "47",
+							"GrayscaleDensity": "174",
+							"InterEyesDistance": "165",
+							"GlobalFaceQualityScore": "0.865173",
+							"GlobalFaceQualityPass": "true",
+							"OnlyOneFacePass": "true",
+							"EyesFoundPass": "true",
+							"FaceFoundConfidence": "0.988759"
+						},
+						"vendor": "daonfacev5"
+					}
+				},
+				{
+					"evaluationDate": "2022-07-27T18:10:43.432+00:00",
+					"resultCode": 0,
+					"resultMessage": "OK",
+					"qualityAssessmentResult": {
+						"passed": true,
+						"score": 0.99075377,
+						"metaData": {
+							"IdFaceThreshold": "0.39",
+							"IdFaceModel": "theia"
+						},
+						"vendor": "IdFace"
+					}
+				}
+			],
+			"fraudulent": false,
+			"format": "JPG",
+			"created": "2022-07-27T18:10:43.437+00:00",
+			"tenant": {
+				"href": "https://bancomacro-dev.identityx-cloud.com/IdentityXServices/rest/v1/tenants/DEFAULT TENANT"
+			},
+			"user": {
+				"href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw"
+			},
+			"data": {
+				"href": "https://bancomacro-dev.identityx-cloud.com/default/IdentityXServices/rest/v1/users/QTAzQRqJgvztbMnZKhaI6ysrFw/samples/lwLwOIWTofMxKiplSyIguw/data"
+			}
+		}
+	]
+}

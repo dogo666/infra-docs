@@ -1,0 +1,28 @@
+{
+    "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzpXHorKus027pMTv1xoiMnA/idchecks/I6vJ8mFEQ8nRJlKQIKDoLQ/challenges",
+    "metadata": {
+        "page": 1,
+        "limit": 0,
+        "pageCount": 1,
+        "totalCount": 1
+    },
+    "paging": {},
+    "items": [
+        {
+            "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/users/QTAzpXHorKus027pMTv1xoiMnA/idchecks/I6vJ8mFEQ8nRJlKQIKDoLQ/challenges/MGoqP4jL36AMjs--ofFWdw",
+            "id": "MGoqP4jL36AMjs--ofFWdw",
+            "created": "2021-10-06T14:17:55.354+00:00",
+            "type": "SVR3DFL",
+            "index": 0,
+            "timeout": 10,
+            "maxRetries": 3,
+            "detectionThreshold": 0.75,
+            "additionalConfig": {
+                "challengeAlias": "503cf1b3-9b71-4c36-855f-a22afd0369ca"
+            },
+            "policy": {
+                "href": "https://bancomacro-dev.identityx-cloud.com/default/DigitalOnBoardingServices/rest/v1/admin/policies/MZWXe2jK1xyEM6TT61XdaQ"
+            }
+        }
+    ]
+}
